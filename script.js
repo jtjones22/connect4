@@ -1,38 +1,41 @@
 let currentPlayer = "red" // "red" "black"
 
 // "red" "black" null
-let board = [
-    [ null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null ],
-    [ null, null, null, null, null, null, null ]
-]
+// let board = [
+//     [ null, null, null, null, null, null, null ],
+//     [ null, null, null, null, null, null, null ],
+//     [ null, null, null, null, null, null, null ],
+//     [ null, null, null, null, null, null, null ],
+//     [ null, null, null, null, null, null, null ],
+//     [ null, null, null, null, null, null, null ]
+// ]
 
-const edgeX = board[0].length - 3;
-const edgeY = board.length - 3;
-let currentPlayerWins
-let horizontalWin 
-let verticalWin 
-let diagonalWinRight
-let diagonalWinLeft
-let tie
-let continuePlaying 
-
-function createDisk(currentPlayer) {
-    if (currentPlayer === 'red') {
-        let diskA = document.createElement('div');
-        diskA.classList.add('diskA');
+function createGameboard(){
+    board = [];
+    for(let i=0; i<6; i++){
+      board[i] = [];
+      for(let j=0; j<7; j++){
+        board[i].push(null);
+      }
     }
-    else if (currentPlayer === 'black') {
+  }
+console.log[(createGameboard())]
+// This function will create a disk based on the currentPlayer variable setting.
+function createDisk() {
+    if(currentPlayer === 'red') {
+    let diskA = document.createElement('div');
+    diskA.classList.add('diskA');
+    } else {
         let diskB = document.createElement('div');
         diskB.classList.add('diskB');
     }
 }
+createDisk();
 
+// This function will add disk to column using data-col from html.
 function addDiskToBoard (color, boardToUpdate, selectedColumn) {
-
+    // let square = document.getElementById('0-0');
+    // square.appendChild(diskA);
     return updatedBoard
 }
 
@@ -42,113 +45,17 @@ function displayBoardInHTML (boardToDisplay) {
 }
 
 function checkForEndingCondition (boardToCheck) {
-
-    function horizontalWinCheck(boardToCheck) {
-        for(let y = 0; y < board.length; y++){
-            for(let x = 0; x < edgeX; x++) {
-              let cell = board[y][x];
-              if(cell !== null) {
-                if(cell === board[y][x+1] && cell === board[y][x+2] && cell === board[y][x+3] ) {
-                    console.log('You won!');
-                    horizontalWin = true;
-                    return horizontalWin
-                }
-              }
-            }
-          }
-        return false
-    }
-    console.log(horizontalWinCheck(board));
+    // ending conditions: "red win", "black win", "tie", "" (keep playing)
     
-    function verticalWinCheck(boardToCheck) {
-        for (let y = 0; y < edgeY; y++) {
-            for (let x = 0; x < board[0].length; x++) {
-                cell = board[y][x];
-                if (cell !== null) {
-                    if (cell === board[y+1][x] && cell === board[y+2][x] && cell === board[y+3][x]) {
-                        console.log('You won vertically!');
-                        verticalWin = true;
-                        return verticalWin
-                    }
-                }
-            }
-        }
-        return false
-    }
-    console.log(verticalWinCheck(board));
-    
-    function diagonalLeftWinCheck(boardToCheck) { 
-        for (let y = 0; y < edgeY; y++) {
-            for (let x = 0; x < edgeX; x++) {
-                cell = board[y][x];
-                if (cell !== null) {
-                    if (cell === board[y+1][x+1] && cell === board[y+2][x+2] && cell === board[y+3][x+3]) {
-                        console.log('You won diagonally to the Left!')
-                        diagonalWinLeft = true;
-                        return diagonalWinLeft
-                    }
-                }
-            }
-        }
-        return false
-    }
-    console.log(diagonalLeftWinCheck(board));
-    
-    function diagonalRightWinCheck(boardToCheck) { 
-        for (let y = 3; y < board.length; y++) {
-            for (let x = 0; x < edgeX; x++) {
-                cell = board[y][x];
-                if (cell !== null) {
-                    if (cell === board[y-1][x+1] && cell === board[y-2][x+2] && cell === board[y-3][x+3]) {
-                        console.log('You won diagonally to the Right!')
-                        diagonalWinRight = true;
-                        return diagonalWinRight
-                    }
-                }
-            }
-        }
-        return false
-    }
-    console.log(diagonalRightWinCheck(board));
-
-    function tieCheck(boardToCheck) {
-        let emptySpace = "unavailable"
-        for (let y = 0; y < board.length; y++) {
-            for (let x = 0; x < edgeX; x++) {
-                cell = board[y][x]
-                if(cell === null){
-                    emptySpace = "available"
-                    tie = false
-                    return false
-                }
-            }
-        }
-        if(emptySpace === "unavailable" && horizontalWin !== true && verticalWin !== true && diagonalWinRight !== true && diagonalWinLeft !== true){
-        tie = true
-        return tie;
-        }
-    }
-    console.log(tieCheck(board));
-    
-    
-    if (tie === true) {
-        return "tie"
-    }
-    else if (horizontalWin === true || verticalWin === true || diagonalWinRight === true || diagonalWinLeft === true) {
-
-        return  currentPlayerWins + " wins"
-    }
-    else {
-        return "continuePlaying"
-    }
+    return condition
 }
-console.log(checkForEndingCondition(board));
 
 function showMessage () {
-    // Tell the user if someone has won or there is a tie or keep playing
+    // Tell the user if someone has won or there is a tie
 }
 
 function togglePlayer (color) {
+    let newColor
     return newColor
 }
 

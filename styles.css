@@ -5,22 +5,32 @@
     Assign width to table
     assign height to tr
     assign width% to td */
-
-
+/*  Display a red or black disc.
+    Stack red and black discs in a column using a flex box layout.
+    Display a full board consisting of 7 columns. 
+    Class to differentiate whether an item is selected or not
+    Assign width to table
+    assign height to tr
+    assign width% to td */
     td {
         border: 2px solid blue;
-        height: 100px;
-        width: 100px;
+        margin: 0px;
+        height: 75px;
+        width: 75px;
     }
 
     .diskA {
-        background-color: red;
-        height: 75px;
-        width: 75px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background: red;
+        margin: 0 auto;
     }
 
     .diskB {
-        background-color: black;
-        height: 75px;
-        width: 75px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background: black;
+        margin: 0 auto;
     }
