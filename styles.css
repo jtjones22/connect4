@@ -5,3 +5,22 @@
     Assign width to table
     assign height to tr
     assign width% to td */
+
+
+    td {
+        border: 2px solid blue;
+        height: 100px;
+        width: 100px;
+    }
+
+    .diskA {
+        background-color: red;
+        height: 75px;
+        width: 75px;
+    }
+
+    .diskB {
+        background-color: black;
+        height: 75px;
+        width: 75px;
+    }
