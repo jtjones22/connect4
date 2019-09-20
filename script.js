@@ -1,13 +1,5 @@
 let currentPlayer = "red" // "red" "black"
-const edgeX = board[0].length - 3;
-const edgeY = board.length - 3;
-let currentPlayerWins
-let horizontalWin 
-let verticalWin 
-let diagonalWinRight
-let diagonalWinLeft
-let tie
-let continuePlaying
+
 
 // "red" "black" null
 // let board = [
@@ -18,6 +10,33 @@ let continuePlaying
 //     [ null, null, null, null, null, null, null ],
 //     [ null, null, null, null, null, null, null ]
 // ]
+createGameboard()
+
+const edgeX = board[0].length - 3;
+const edgeY = board.length - 3;
+let horizontalWin 
+let verticalWin 
+let diagonalWinRight
+let diagonalWinLeft
+let tie
+
+function columnClickHandler (evt) {
+    // figure out what column was clicked
+    let clickedColumn = evt.target.dataset.col
+    if (clickedColumn === undefined) {
+        return
+    }
+
+    board = addDiskToBoard(currentPlayer, board, clickedColumn)
+    displayBoardInHTML(board)
+    let condition = checkForEndingCondition(board)
+    // "red win", "black win", "tie", ""
+    if (condition !== "") {
+        showMessage(condition)
+    } else {
+        currentPlayer = togglePlayer(currentPlayer)
+    }
+}
 
 function createGameboard(){
     board = [];
@@ -147,10 +166,10 @@ function checkForEndingCondition (boardToCheck) {
     }
     else if (horizontalWin === true || verticalWin === true || diagonalWinRight === true || diagonalWinLeft === true) {
 
-        return condition =  currentPlayerWins + " wins"
+        return condition =  currentPlayer + " wins"
     }
     else {
-        return condition = "continuePlaying"
+        return condition = ""
     }
     
 }
@@ -161,27 +180,15 @@ function showMessage () {
 }
 
 function togglePlayer (color) {
-    let newColor
-    return newColor
+    if (currentPlayer === "red"){
+        currentPlayer = "black"
+    } else if(currentPlayer === "black"){
+        currentPlayer = "red"
+    }
+    return currentPlayer
 }
 
-function columnClickHandler (evt) {
-    // figure out what column was clicked
-    let clickedColumn = evt.target.dataset.col
-    if (clickedColumn === undefined) {
-        return
-    }
 
-    board = addDiskToBoard(currentPlayer, board, clickedColumn)
-    displayBoardInHTML(board)
-    let condition = checkForEndingCondition(board)
-    // "red win", "black win", "tie", ""
-    if (condition !== "") {
-        showMessage(condition)
-    } else {
-        currentPlayer = togglePlayer(currentPlayer)
-    }
-}
 
 
 // Set a click handler function for each column that adds an additional disc.
