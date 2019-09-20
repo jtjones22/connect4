@@ -182,7 +182,7 @@ function showMessage () {
 function togglePlayer (color) {
     if (currentPlayer === "red"){
         currentPlayer = "black"
-    } else if(currentPlayer === "black"){
+    } else {
         currentPlayer = "red"
     }
     return currentPlayer
